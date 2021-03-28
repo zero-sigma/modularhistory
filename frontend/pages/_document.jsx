@@ -1,8 +1,8 @@
 // https://nextjs.org/docs/advanced-features/custom-document
 
-import React from "react";
-import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheets } from "@material-ui/styles";
+import Document, { Head, Html, Main, NextScript } from "next/document";
+import React from "react";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -70,6 +70,9 @@ class MyDocument extends Document {
           {/* Epub.js */}
           {/* TODO: likewise, https://www.npmjs.com/package/epubjs */}
           <script src="https://cdn.jsdelivr.net/npm/epubjs/dist/epub.min.js" defer />
+          
+          {/* Braintree Integration */}
+          <script src="https://js.braintreegateway.com/web/dropin/1.27.0/js/dropin.min.js" />
 
           {/*{% if request.user.is_superuser %}*/}
           {/*    <style>*/}

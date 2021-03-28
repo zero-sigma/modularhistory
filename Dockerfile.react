@@ -37,4 +37,4 @@ RUN chown -R www-data:www-data /modularhistory && \
 EXPOSE 3000
 
 # Switch from root to non-root user
-USER www-data
+# USER www-data
