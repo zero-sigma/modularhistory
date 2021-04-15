@@ -1,0 +1,3 @@
+[submodule "Misago"]
+	path = Misago
+	url = https://github.com/ModularHistory/Misago.git
