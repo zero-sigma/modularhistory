@@ -11,6 +11,7 @@ services:
       - django
       - flower
       - react
+      - misago
     deploy:
       restart_policy:
         condition: on-failure
@@ -136,6 +137,36 @@ services:
         ipv4_address: 172.27.0.13
     ports:
       - "5555:5555"
+      
+  misago:
+    command: python manage.py runserver 0.0.0.0:8002
+    environment:
+      # Postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=modularhistory
+      - POSTGRES_HOST=postgres
+      # - POSTGRES_TEST_DB=misago_test
+      # Superuser
+      - SUPERUSER_USERNAME=Admin
+      - SUPERUSER_EMAIL=admin@example.com
+      - SUPERUSER_PASSWORD=password
+    image: misago
+    ports:
+      # Map port 8002 in the container to port 8002 on the host
+      # This way we can access the forum through http://localhost:8002
+      - "8002:8002"
+    networks:
+      default:
+        ipv4_address: 172.27.0.15
+    depends_on:
+      - postgres
+      - redis
+    tty: true
+    volumes:
+      # Map in the entire project into the container
+      # This makes sure files in the container updates on the fly as we were working locally
+      - ./Misago:/srv/misago
 
   mongo:
     deploy:

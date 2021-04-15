@@ -76,3 +76,14 @@ services:
       - ./frontend:/modularhistory/frontend
       - ./frontend/node_modules:/modularhistory/frontend/node_modules
       - ./wait-for-it.sh:/usr/local/bin/wait-for-it.sh
+
+  misago:
+    build:
+      context: .
+      dockerfile: Dockerfile.misago
+      args:
+        ENVIRONMENT: dev
+    image: misago
+    volumes:
+        - .:/modularhistory
+        - ./wait-for-it.sh:/usr/local/bin/wait-for-it.sh
